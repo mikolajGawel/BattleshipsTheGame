@@ -45,7 +45,7 @@ namespace BattleshipsTheGame
                 Vec2i get = new Vec2i(rand.Next(0, 9), rand.Next(0, 9));
                 if (hitBoard[get.x, get.y] != HIT_BOARD.NONE)
                 {
-                    Console.Write("Nie można strzelić dwa razy w to samo miejsce\ni tak tam nic nie ma");
+                    Console.Write("Nie można strzelić dwa razy\n w to samo miejsce\ni tak tam nic nie ma");
                     continue;
                 }
                 coords = get;
@@ -57,6 +57,9 @@ namespace BattleshipsTheGame
             Vec2i shotCoords = GetShotCoords();
             HIT_BOARD shot = oponent.ShotAt(shotCoords);
             hitBoard[shotCoords.x, shotCoords.y] = shot;
+
+            if (shot == HIT_BOARD.HIT || shot == HIT_BOARD.DESTROYED)
+                Turn(oponent);
         }
        
     }

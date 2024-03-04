@@ -45,6 +45,8 @@ namespace BattleshipsTheGame
                         if(!bot)
                             players[i].WaitForTurn();
                         players[i].Turn(players[Math.Abs(i - 1)]);
+                        if (!bot)
+                            players[i].EndTurn();
                     }
                 }
                

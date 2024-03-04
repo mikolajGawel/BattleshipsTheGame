@@ -150,6 +150,11 @@ namespace BattleshipsTheGame
 
             Renderer.DrawShipsBoard(ships, oponent.hitBoard);
             Renderer.DrawHitBoard(hitBoard);
+            if(shot == HIT_BOARD.HIT ||  shot == HIT_BOARD.DESTROYED)
+                Turn(oponent);
+        }
+        public void EndTurn()
+        {
             Console.WriteLine("Kliknij któryś przycisk aby\noddać turę drugiemu graczowi");
             Console.ReadKey();
         }
