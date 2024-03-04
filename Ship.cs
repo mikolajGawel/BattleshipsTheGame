@@ -28,7 +28,7 @@ namespace BattleshipsTheGame
         //(Item3) boolean
         //true - parts of shop that are still active
         //false parts that has been destroyed
-        public bool isAlive()
+        public bool IsAlive()
         {
             foreach (var field in fields)
             {
@@ -38,7 +38,7 @@ namespace BattleshipsTheGame
             return false;
         }
 
-        private Tuple<Vec2i, Vec2i> getDirection(Vec2i value1, Vec2i value2)
+        private Tuple<Vec2i, Vec2i> GetDirection(Vec2i value1, Vec2i value2)
         {
             if (value1.x > value2.x || (value1.x == value2.x && value1.y > value2.y))
             {
@@ -87,7 +87,7 @@ namespace BattleshipsTheGame
             fields = new List<Tuple<int, int, bool>>();
             int lenght = 0;
 
-            (startPosition,endPosition) = getDirection(startPosition, endPosition);
+            (startPosition,endPosition) = GetDirection(startPosition, endPosition);
             
 
             lenght = Math.Abs(direction == Direction.VERTICAL ? (startPosition.y-endPosition.y) : (startPosition.x-endPosition.x));

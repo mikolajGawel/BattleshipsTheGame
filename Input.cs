@@ -35,22 +35,7 @@ namespace BattleshipsTheGame
             //Console.WriteLine($"vec2({result.x}, {result.y})");
             return result;
         }
-        public static Vec2i GetShotCoords(HIT_BOARD[,] board) { 
-            
-            Vec2i coords = null;
-            while(coords == null)
-            {
-                Console.WriteLine("Podaj koordynaty do ataku:");
-                Vec2i get = GetCoords();
-                if (board[get.x, get.y] != HIT_BOARD.NONE)
-                {
-                    Console.Write("Nie można strzelić dwa razy w to samo miejsce\ni tak tam nic nie ma");
-                    continue;
-                }
-                coords = get;
-            }
-            return coords;
-        }
+        
 
         //pytanie tak czy nie
         public static bool PromptYN(string prompt)
@@ -63,6 +48,17 @@ namespace BattleshipsTheGame
                 anwser = str[0];
             }
             return (anwser == 't');
+        }
+        public static bool PromptBot()
+        {
+            Console.WriteLine("Wybierz tryb gry\n1.Gra jednoosobowa z botem\n2.Gra wieloosobowa");
+            char anwser = ' ';
+            while (anwser != '1' && anwser != '2')
+            {
+                string str = Console.ReadKey().KeyChar.ToString().ToLower();
+                anwser = str[0];
+            }
+            return (anwser == '1');
         }
         public static Direction GetDirection()
         {
