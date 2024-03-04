@@ -14,7 +14,7 @@ namespace BattleshipsTheGame
         {
             Console.Title = "Battleships The Game";
             Console.SetWindowSize(40, 34);
-            Console.WriteLine("Statki\n The Game\n @Mikołaj Gaweł 2024\n(Kliknij cokolwiek aby zacząć)");
+            Console.WriteLine("Battleships\n The Game\n @Mikołaj Gaweł 2024\n(Kliknij cokolwiek aby zacząć)");
             Console.ReadKey();
             bot = Input.PromptBot();
             players = new Player[2];
