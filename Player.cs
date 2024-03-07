@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,6 +41,10 @@ namespace BattleshipsTheGame
             Console.WriteLine($"Gracz {name} podaje pozycje statków\nkliknij cokolwiek aby zacząć");
             Console.ReadKey();
 
+            ships = new List<Ship>();
+            hitBoard = new HIT_BOARD[10, 10];
+
+        
             List<int> ship_sizes = new List<int>{ 4, 3, 3, 2, 2, 2, 1, 1, 1, 1 };
             foreach(int ship_size in ship_sizes)
             {
@@ -105,9 +109,9 @@ namespace BattleshipsTheGame
                     if (board[x, y] == HIT_BOARD.DESTROYED)
                     {
                         for (int i = (x > 0 ? -1 : 0);
-                        i < (x < 9 ? 2 : 0); i++)
+                        i < (x < 9 ? 2 : 1); i++)
                             for (int j = y > 0 ? -1 : 0;
-                                j < (y < 9 ? 2 : 0); j++)
+                                j < (y < 9 ? 2 : 1); j++)
                             {
                                 if (board[x + i, y + j] == HIT_BOARD.NONE)
                                     board[x + i, y + j] = HIT_BOARD.MISS;
@@ -130,8 +134,12 @@ namespace BattleshipsTheGame
             Renderer.DrawShipsBoard(ships, oponent.hitBoard);
             Renderer.DrawHitBoard(hitBoard);
 
+            if (oponent.ships.Count == 0 || ships.Count == 0)
+                return;
+
             Vec2i shotCoords = GetShotCoords();
             HIT_BOARD shot = oponent.ShotAt(shotCoords);
+            Console.Clear();
             hitBoard[shotCoords.x, shotCoords.y] = shot;
             switch (shot)
             {
