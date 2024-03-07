@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +15,10 @@ namespace BattleshipsTheGame
         {
             Random rand = new Random();
             /*4,3,3,2,2,2,1,1,1,1*/
+            
+            ships = new List<Ship>();
+            hitBoard = new HIT_BOARD[10, 10];
+
             List<int> ship_sizes = new List<int> { 4, 3, 3, 2, 2, 2, 1, 1, 1, 1 };
             foreach (int ship_size in ship_sizes)
             {
@@ -54,6 +58,10 @@ namespace BattleshipsTheGame
         }
         public override void Turn(Player oponent)
         {
+
+            if (oponent.ships.Count == 0 || ships.Count == 0)
+                return;
+
             Vec2i shotCoords = GetShotCoords();
             HIT_BOARD shot = oponent.ShotAt(shotCoords);
             hitBoard[shotCoords.x, shotCoords.y] = shot;
